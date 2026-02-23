@@ -195,11 +195,9 @@ class Searcher {
         this.statusUpdate();
         let biomesGroups = [];
         for (const group of prefixPeople) {
-          if (group[0].length > 1) {
-            let tempBiomes = new Set();
-            group[1].forEach(biomes => biomes.forEach(biome => tempBiomes.add(biome)));
-            biomesGroups.push([...tempBiomes]);
-          }
+          let tempBiomes = new Set();
+          group[1].forEach(biomes => biomes.forEach(biome => tempBiomes.add(biome)));
+          biomesGroups.push([...tempBiomes]);
         }
         if (this.biomeCoverExists(biomesGroups, this.minBiomes)) {
           this.handleNewCombination(prefixPeople, prefixHappiness);
