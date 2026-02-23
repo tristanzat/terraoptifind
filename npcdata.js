@@ -10,14 +10,18 @@ const Biome = {
     Ocean: 'Ocean',
     Snow: 'Snow',
     Mushroom: 'Mushroom',
+    Aether: 'Aether',
+    Underworld: 'Underworld',
     None: '',
 };
 
-const baseBiomes = ["Forest", "Hallow", "Caverns", "Desert", "Jungle", "Ocean", "Snow", "Mushroom"];
-const biomes1 = [["Forest"], ["Hallow"], ["Caverns"], ["Space"], ["Desert"], ["Jungle"], ["Ocean"], ["Snow"], ["Mushroom"]];
+const baseBiomes = ["Forest", "Hallow", "Caverns", "Desert", "Jungle", "Ocean", "Snow", "Mushroom", "Aether", "Underworld"];
+const biomes1 = [["Forest"], ["Hallow"], ["Caverns"], ["Space"], ["Desert"], ["Jungle"], ["Ocean"], ["Snow"], ["Mushroom"], ["Aether"], ["Underworld"]];
 
 const biomes2Natural = [
     ["Hallow", "Caverns"], ["Caverns", "Desert"], ["Caverns", "Jungle"], ["Caverns", "Ocean"], ["Caverns", "Snow"], ["Caverns", "Mushroom"],
+    ["Hallow", "Aether"], ["Aether", "Desert"], ["Aether", "Jungle"], ["Aether", "Ocean"], ["Aether", "Snow"], ["Aether", "Mushroom"],
+    ["Hallow", "Underworld"], ["Underworld", "Desert"], ["Underworld", "Jungle"], ["Underworld", "Ocean"], ["Underworld", "Snow"], ["Underworld", "Mushroom"],
     ['Space', 'Ocean'], ['Space', 'Forest'],
 ];
 const biomes2Easy = [
@@ -31,6 +35,8 @@ const biomes2Rest = [
 
 const biomes3Easy = [
     ["Hallow", "Caverns", "Desert"], ["Hallow", "Caverns", "Snow"], ["Hallow", "Desert", "Ocean"], ["Caverns", "Jungle", "Mushroom"],
+    ["Hallow", "Aether", "Desert"], ["Hallow", "Aether", "Snow"], ["Aether", "Jungle", "Mushroom"],
+    ["Hallow", "Underworld", "Desert"], ["Hallow", "Underworld", "Snow"], ["Underworld", "Jungle", "Mushroom"],
     ["Hallow", "Space", "Desert"], ["Hallow", "Space", "Snow"], ["Space", "Jungle", "Mushroom"],
 ];
 const biomes3Rest = [
@@ -40,7 +46,15 @@ const biomes3Rest = [
   ["Hallow", "Ocean", "Mushroom"], ["Caverns", "Jungle", "Snow"], ["Hallow", "Snow", "Mushroom"], ["Desert", "Jungle", "Snow"],
   ["Caverns", "Snow", "Mushroom"], ["Desert", "Jungle", "Mushroom"], ["Desert", "Snow", "Mushroom"], ["Jungle", "Ocean", "Snow"],
   ["Jungle", "Ocean", "Mushroom"], ["Jungle", "Snow", "Mushroom"], ["Ocean", "Snow", "Mushroom"], ["Hallow", "Caverns", "Ocean"],
-  ["Caverns", "Jungle", "Ocean"], ["Caverns", "Ocean", "Snow"], ["Caverns", "Ocean", "Mushroom"]
+  ["Caverns", "Jungle", "Ocean"], ["Caverns", "Ocean", "Snow"], ["Caverns", "Ocean", "Mushroom"],
+  ["Hallow", "Aether", "Jungle"], ["Hallow", "Aether", "Mushroom"], ["Aether", "Desert", "Jungle"],
+  ["Aether", "Desert", "Snow"], ["Aether", "Desert", "Mushroom"], ["Aether", "Jungle", "Snow"],
+  ["Aether", "Snow", "Mushroom"], ["Hallow", "Aether", "Ocean"], ["Aether", "Jungle", "Ocean"],
+  ["Aether", "Ocean", "Snow"], ["Aether", "Ocean", "Mushroom"],
+  ["Hallow", "Underworld", "Jungle"], ["Hallow", "Underworld", "Mushroom"], ["Underworld", "Desert", "Jungle"],
+  ["Underworld", "Desert", "Snow"], ["Underworld", "Desert", "Mushroom"], ["Underworld", "Jungle", "Snow"],
+  ["Underworld", "Snow", "Mushroom"], ["Hallow", "Underworld", "Ocean"], ["Underworld", "Jungle", "Ocean"],
+  ["Underworld", "Ocean", "Snow"], ["Underworld", "Ocean", "Mushroom"]
 ];
 
 const biomes4Rest = [
@@ -53,7 +67,19 @@ const biomes4Rest = [
   ["Hallow", "Desert", "Ocean", "Mushroom"], ["Caverns", "Desert", "Snow", "Mushroom"], ["Hallow", "Caverns", "Snow", "Mushroom"],
   ["Hallow", "Jungle", "Ocean", "Mushroom"], ["Caverns", "Jungle", "Snow", "Mushroom"], ["Hallow", "Desert", "Jungle", "Mushroom"],
   ["Hallow", "Caverns", "Ocean", "Mushroom"], ["Caverns", "Jungle", "Ocean", "Mushroom"], ["Hallow", "Caverns", "Desert", "Mushroom"],
-  ["Caverns", "Desert", "Jungle", "Mushroom"], ["Hallow", "Caverns", "Jungle", "Mushroom"]
+  ["Caverns", "Desert", "Jungle", "Mushroom"], ["Hallow", "Caverns", "Jungle", "Mushroom"],
+  ["Hallow", "Aether", "Ocean", "Snow"], ["Aether", "Jungle", "Ocean", "Snow"], ["Hallow", "Aether", "Desert", "Snow"],
+  ["Hallow", "Desert", "Ocean", "Aether"], ["Aether", "Desert", "Jungle", "Snow"], ["Hallow", "Aether", "Jungle", "Snow"],
+  ["Hallow", "Aether", "Desert", "Ocean"], ["Aether", "Ocean", "Snow", "Mushroom"], ["Hallow", "Aether", "Snow", "Mushroom"],
+  ["Hallow", "Aether", "Jungle", "Ocean"], ["Aether", "Desert", "Snow", "Mushroom"], ["Hallow", "Aether", "Desert", "Jungle"],
+  ["Aether", "Desert", "Jungle", "Mushroom"], ["Hallow", "Aether", "Ocean", "Mushroom"], ["Aether", "Jungle", "Ocean", "Mushroom"],
+  ["Hallow", "Aether", "Desert", "Mushroom"], ["Aether", "Jungle", "Snow", "Mushroom"],
+  ["Hallow", "Underworld", "Ocean", "Snow"], ["Underworld", "Jungle", "Ocean", "Snow"], ["Hallow", "Underworld", "Desert", "Snow"],
+  ["Hallow", "Desert", "Ocean", "Underworld"], ["Underworld", "Desert", "Jungle", "Snow"], ["Hallow", "Underworld", "Jungle", "Snow"],
+  ["Hallow", "Underworld", "Desert", "Ocean"], ["Underworld", "Ocean", "Snow", "Mushroom"], ["Hallow", "Underworld", "Snow", "Mushroom"],
+  ["Hallow", "Underworld", "Jungle", "Ocean"], ["Underworld", "Desert", "Snow", "Mushroom"], ["Hallow", "Underworld", "Desert", "Jungle"],
+  ["Underworld", "Desert", "Jungle", "Mushroom"], ["Hallow", "Underworld", "Ocean", "Mushroom"], ["Underworld", "Jungle", "Ocean", "Mushroom"],
+  ["Hallow", "Underworld", "Desert", "Mushroom"], ["Underworld", "Jungle", "Snow", "Mushroom"]
 ];
 
 const biomes5Rest = [
@@ -64,16 +90,40 @@ const biomes5Rest = [
   ["Caverns", "Jungle", "Ocean", "Snow", "Mushroom"], ["Hallow", "Caverns", "Desert", "Snow", "Mushroom"],
   ["Hallow", "Desert", "Ocean", "Jungle", "Mushroom"], ["Caverns", "Desert", "Jungle", "Snow", "Mushroom"],
   ["Hallow", "Caverns", "Jungle", "Snow", "Mushroom"], ["Hallow", "Caverns", "Desert", "Ocean", "Mushroom"],
-  ["Hallow", "Caverns", "Jungle", "Ocean", "Mushroom"], ["Hallow", "Caverns", "Desert", "Jungle", "Mushroom"]
+  ["Hallow", "Caverns", "Jungle", "Ocean", "Mushroom"], ["Hallow", "Caverns", "Desert", "Jungle", "Mushroom"],
+  ["Hallow", "Aether", "Desert", "Ocean", "Snow"], ["Hallow", "Aether", "Jungle", "Ocean", "Snow"],
+  ["Hallow", "Aether", "Desert", "Jungle", "Snow"], ["Hallow", "Desert", "Ocean", "Aether", "Jungle"],
+  ["Hallow", "Aether", "Ocean", "Snow", "Mushroom"], ["Aether", "Jungle", "Ocean", "Snow", "Mushroom"],
+  ["Hallow", "Aether", "Desert", "Snow", "Mushroom"], ["Hallow", "Desert", "Ocean", "Jungle", "Aether"],
+  ["Aether", "Desert", "Jungle", "Snow", "Mushroom"], ["Hallow", "Aether", "Jungle", "Snow", "Mushroom"],
+  ["Hallow", "Aether", "Desert", "Ocean", "Jungle"], ["Hallow", "Aether", "Desert", "Ocean", "Mushroom"],
+  ["Hallow", "Aether", "Jungle", "Ocean", "Mushroom"], ["Hallow", "Aether", "Desert", "Jungle", "Mushroom"],
+  ["Hallow", "Underworld", "Desert", "Ocean", "Snow"], ["Hallow", "Underworld", "Jungle", "Ocean", "Snow"],
+  ["Hallow", "Underworld", "Desert", "Jungle", "Snow"], ["Hallow", "Desert", "Ocean", "Underworld", "Jungle"],
+  ["Hallow", "Underworld", "Ocean", "Snow", "Mushroom"], ["Underworld", "Jungle", "Ocean", "Snow", "Mushroom"],
+  ["Hallow", "Underworld", "Desert", "Snow", "Mushroom"], ["Hallow", "Desert", "Ocean", "Jungle", "Underworld"],
+  ["Underworld", "Desert", "Jungle", "Snow", "Mushroom"], ["Hallow", "Underworld", "Jungle", "Snow", "Mushroom"],
+  ["Hallow", "Underworld", "Desert", "Ocean", "Jungle"], ["Hallow", "Underworld", "Desert", "Ocean", "Mushroom"],
+  ["Hallow", "Underworld", "Jungle", "Ocean", "Mushroom"], ["Hallow", "Underworld", "Desert", "Jungle", "Mushroom"]
 ];
 
 const biomes6Rest = [
   ["Hallow", "Caverns", "Desert", "Ocean", "Jungle", "Snow"], ["Hallow", "Desert", "Ocean", "Jungle", "Snow", "Mushroom"],
   ["Hallow", "Caverns", "Desert", "Ocean", "Snow", "Mushroom"], ["Hallow", "Caverns", "Jungle", "Ocean", "Snow", "Mushroom"],
-  ["Hallow", "Caverns", "Desert", "Jungle", "Snow", "Mushroom"], ["Hallow", "Caverns", "Desert", "Ocean", "Jungle", "Mushroom"]
+  ["Hallow", "Caverns", "Desert", "Jungle", "Snow", "Mushroom"], ["Hallow", "Caverns", "Desert", "Ocean", "Jungle", "Mushroom"],
+  ["Hallow", "Aether", "Desert", "Ocean", "Jungle", "Snow"], ["Hallow", "Aether", "Desert", "Ocean", "Snow", "Mushroom"],
+  ["Hallow", "Aether", "Jungle", "Ocean", "Snow", "Mushroom"], ["Hallow", "Aether", "Desert", "Jungle", "Snow", "Mushroom"],
+  ["Hallow", "Aether", "Desert", "Ocean", "Jungle", "Mushroom"],
+  ["Hallow", "Underworld", "Desert", "Ocean", "Jungle", "Snow"], ["Hallow", "Underworld", "Desert", "Ocean", "Snow", "Mushroom"],
+  ["Hallow", "Underworld", "Jungle", "Ocean", "Snow", "Mushroom"], ["Hallow", "Underworld", "Desert", "Jungle", "Snow", "Mushroom"],
+  ["Hallow", "Underworld", "Desert", "Ocean", "Jungle", "Mushroom"]
 ];
 
-const biomes7Rest = [["Hallow", "Caverns", "Desert", "Ocean", "Jungle", "Snow", "Mushroom"]];
+const biomes7Rest = [
+  ["Hallow", "Caverns", "Desert", "Ocean", "Jungle", "Snow", "Mushroom"],
+  ["Hallow", "Aether", "Desert", "Ocean", "Jungle", "Snow", "Mushroom"],
+  ["Hallow", "Underworld", "Desert", "Ocean", "Jungle", "Snow", "Mushroom"]
+];
 
 /**
  * @typedef {Object} NPCInfo
